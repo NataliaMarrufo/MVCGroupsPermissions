@@ -1,0 +1,59 @@
+﻿@model AspNetGroupBasedPermissions.Models.UserPermissionsViewModel
+@{ ViewBag.Title = "UserPermissions";
+    Layout = "~/Views/Shared/_MenuLayout.cshtml";
+}
+
+<div class="content-wrapper">
+
+    <div class="container-fluid">
+
+        <br />
+        <br />
+        <h2>Effective Role Permissions for user: @Html.DisplayFor(model => model.UserName)</h2>
+        <hr />
+        <table class="table">
+            <tr>
+                <th>
+                    Role Permission
+                </th>
+                <th>
+                    Description
+                </th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model.Roles)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RoleName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                </tr>
+            }
+        </table>
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+        <!-- Logout Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Select "Logout" below if you are ready to end your current session.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <!--<a class="btn btn-primary"></a>-->@Html.Partial("_LoginPartial")
+
+                    </div>
+                </div>
+            </div>
+        </div>

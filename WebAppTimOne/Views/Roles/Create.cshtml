@@ -1,0 +1,72 @@
+﻿@model AspNetGroupBasedPermissions.Models.RoleViewModel
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_MenuLayout.cshtml";
+}
+
+<div class="content-wrapper">
+
+    <div class="container-fluid">
+
+        <br />
+        <br />
+        <h2>Create Role</h2>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>RolesViewModel</h4>
+                <hr />
+                @Html.ValidationSummary(true)
+                @if (ViewBag.Message != "")
+                {
+                    <p style="color: red">ViewBag.Message</p>
+                }
+                <div class="form-group">
+                    @Html.LabelFor(model => model.RoleName, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.RoleName)
+                        @Html.ValidationMessageFor(model => model.RoleName)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Description)
+                        @Html.ValidationMessageFor(model => model.Description)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+       
+        <!-- Logout Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Select "Logout" below if you are ready to end your current session.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <!--<a class="btn btn-primary"></a>-->@Html.Partial("_LoginPartial")
+
+                    </div>
+                </div>
+            </div>
+        </div>
